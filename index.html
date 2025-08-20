@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TokenLab Dashboard Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background-color: #121212;
+      color: #fff;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      background-color: #1f1f1f;
+      padding: 10px 20px;
+    }
+    .nav-link {
+      color: #fff;
+      margin-right: 15px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-link:hover { text-decoration: underline; }
+    .section { display: none; padding: 20px; }
+    .section.active { display: block; }
+    .card {
+      background-color: #2a2a2a;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    .btn {
+      padding: 8px 12px;
+      background-color: #4caf50;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .btn:hover { background-color: #45a049; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div>
+      <a class="nav-link" data-section="home">Home</a>
+      <a class="nav-link" data-section="dashboard">Dashboard</a>
+      <a class="nav-link" data-section="pricing">Pricing</a>
+    </div>
+    <div><a class="nav-link" onclick="alert('Logout clicked')">Logout</a></div>
+  </div>
+
+  <!-- Sections -->
+  <div id="home" class="section active">
+    <div class="card">
+      <h2>🔑 License Verification</h2>
+      <input type="text" placeholder="Enter License Key">
+      <button class="btn">Login</button>
+    </div>
+  </div>
+
+  <div id="dashboard" class="section">
+    <div class="card">
+      <h2>📊 Dashboard</h2>
+      <p>Metric 1: 123</p>
+      <p>Metric 2: 456</p>
+      <p>Metric 3: 789</p>
+      <button class="btn" onclick="alert('Deposit clicked')">Deposit SOL</button>
+      <button class="btn" onclick="alert('Withdraw clicked')">Withdraw SOL</button>
+    </div>
+  </div>
+
+  <div id="pricing" class="section">
+    <div class="card">
+      <h2>💳 Pricing</h2>
+      <p>Rental (1 Month) — 1 SOL</p>
+      <p>Lifetime Plan — 5 SOL</p>
+    </div>
+  </div>
+
+  <script>
+    const links = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        const target = link.getAttribute('data-section');
+        if (!target) return;
+        sections.forEach(sec => sec.classList.remove('active'));
+        document.getElementById(target).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
